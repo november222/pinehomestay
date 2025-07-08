@@ -52,6 +52,20 @@ function MobileMenu({
       ))}
 
       <hr />
+
+      {/* Các mục tĩnh */}
+      <button
+        onClick={() => handleSubItemClick("/about")}
+        className="block text-gray-700 hover:text-black w-full text-left"
+      >
+        Về chúng tôi
+      </button>
+      <button
+        onClick={() => handleSubItemClick("/contact")}
+        className="block text-gray-700 hover:text-black w-full text-left"
+      >
+        Liên hệ
+      </button>
       <button
         onClick={() => handleSubItemClick("/booking")}
         className="block font-semibold text-indigo-600 w-full text-left"
