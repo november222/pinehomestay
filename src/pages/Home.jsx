@@ -7,7 +7,7 @@ function Home() {
   useEffect(() => {
   AOS.init({
     duration: 1200,   // animation kéo dài lâu hơn
-    once: false,
+    once: true,
     offset: 300       // scroll đến giữa mới bắt đầu
   });
 }, []);
