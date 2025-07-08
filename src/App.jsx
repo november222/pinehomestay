@@ -7,6 +7,8 @@ import ReviewPage from "./pages/ReviewPage";
 import AboutPage from "./pages/AboutPage";
 import TopBanner from "./components/TopBanner";
 import Footer from "./components/Footer";
+import ContactPage from "./pages/ContactPage";
+import BookingPage from "./pages/BookingPage";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/photos" element={<Photos />} />
           <Route path="/review" element={<ReviewPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/booking" element={<BookingPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

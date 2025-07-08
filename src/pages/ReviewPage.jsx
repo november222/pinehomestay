@@ -26,7 +26,7 @@ function ReviewPage() {
     {
       name: "Nguyễn Hữu Duy Khánh",
       avatar: "/avatars/avatar3.png",
-      text: "Một trải nghiệm trên cả tuyệt vời chủa mình và gia đình. Không gian yên tĩnh khi không có mình, sạch sẽ và đầy đủ tiện nghi đặc biệt là có \" chõ đồ soy \".",
+      text: "Một trải nghiệm trên cả tuyệt vời của mình và gia đình. Không gian yên tĩnh khi không có mình, sạch sẽ và đầy đủ tiện nghi đặc biệt là có \" chõ đồ soy \".",
       date: "Tháng 5, 2025",
       stars: 5,
     },
@@ -108,6 +108,13 @@ function ReviewPage() {
           <input
             type="text"
             placeholder="Tên của bạn"
+            className="w-full p-3 border rounded"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Mã đặt phòng"
             className="w-full p-3 border rounded"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}

@@ -39,8 +39,8 @@ function Footer() {
           <h3 className="font-semibold mb-2">Liên hệ</h3>
           <ul className="text-sm space-y-1 text-gray-400">
             <li>📍 Bản Liền, Bắc Hà, Lào Cai</li>
-            <li>📞 0886 073 408 | Ms Thông</li>
-            <li>✉️ banlienpinehomestay@gmail.com</li>
+            <li>📞 0123 456 798 | Ms Thông</li>
+            <li>✉️ pinehomestay@example.com</li>
           </ul>
         </div>
       </div>

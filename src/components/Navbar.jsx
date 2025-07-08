@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaBed, FaSwimmer, FaImages, FaBlog, FaUtensils, FaPlane } from "react-icons/fa";
 
@@ -22,10 +22,30 @@ function Navbar() {
       links: [
         { to: "/photos", text: "Thư viện ảnh", icon: <FaImages /> },
         { to: "/review", text: "Đánh giá", icon: <FaBlog /> },
-        { to: "/blog", text: "Blog du lịch", icon: <FaBlog /> },
       ],
     },
   ];
+
+  const menuRef = useRef();
+
+useEffect(() => {
+  function handleClickOutside(event) {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setMenuOpen(false);
+      setActiveDropdown(null);
+    }
+  }
+
+  if (menuOpen) {
+    document.addEventListener("mousedown", handleClickOutside);
+  } else {
+    document.removeEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [menuOpen]);
 
   return (
     <header className="w-full bg-white shadow-sm fixed top-0 left-0 z-50">
@@ -72,7 +92,7 @@ function Navbar() {
           <Link to="/about" className="hover:underline underline-offset-4">
             Về chúng tôi
           </Link>
-          <Link to="/lien-he" className="hover:underline underline-offset-4">
+          <Link to="/contact" className="hover:underline underline-offset-4">
             Liên hệ
           </Link>
         </nav>
@@ -80,40 +100,62 @@ function Navbar() {
         {/* Desktop Actions */}
         <div className="hidden md:flex space-x-2">
           <Link
-            to="/dat-phong"
+            to="/booking"
             className="px-4 py-1.5 text-sm text-white bg-indigo-600 rounded hover:bg-indigo-700"
           >
             Đặt phòng
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-xl">
+        {/* Toggle menu on mobile */}
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-2xl">
           ☰
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-sm px-6 py-4 space-y-4 text-sm">
-          {dropdownMenus.map((menu) => (
+        <div
+    ref={menuRef}
+    className="md:hidden bg-white shadow px-6 py-4 space-y-4 text-sm 
+      animate-fade-in-down transition-all duration-300"
+  >
+          {dropdownMenus.map((menu, idx) => (
             <div key={menu.label}>
-              <span className="font-semibold">{menu.label}</span>
-              {menu.links.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="flex items-center gap-2 pl-4 py-2 text-gray-600 hover:text-black"
-                >
-                  {item.icon} {item.text}
-                </Link>
-              ))}
+              <button
+                className="flex justify-between w-full font-semibold text-left"
+                onClick={() =>
+                  setActiveDropdown(activeDropdown === idx ? null : idx)
+                }
+              >
+                {menu.label}
+                {activeDropdown === idx ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+
+              {/* Dropdown items */}
+              {activeDropdown === idx && (
+                <div className="mt-2 pl-4 space-y-2">
+                  {menu.links.map((item) => (
+                    <button
+                      key={item.to}
+                      onClick={() => handleSubItemClick(item.to)}
+                      className="block text-gray-600 hover:text-black text-left w-full"
+                    >
+                      {item.text}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
+
           <hr />
-          <Link to="/about">Về chúng tôi</Link>
-          <Link to="/lien-he">Liên hệ</Link>
-          <Link to="/dat-phong" className="block font-semibold text-indigo-600">Đặt phòng</Link>
+          <button
+            onClick={() => handleSubItemClick("/booking")}
+            className="block font-semibold text-indigo-600 w-full text-left"
+          >
+            Đặt phòng
+          </button>
         </div>
       )}
     </header>

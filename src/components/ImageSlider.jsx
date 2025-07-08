@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -51,9 +52,11 @@ const ImageSlider = () => {
               className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
               transition-opacity duration-700 ${hovered ? "opacity-100" : "opacity-0"}`}
             >
+              <Link to="/photos">
               <button className="px-6 py-3 bg-white text-purple-700 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition">
                 Khám phá ngay
               </button>
+              </Link>
             </div>
           </div>
         ))}
