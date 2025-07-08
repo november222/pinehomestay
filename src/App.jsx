@@ -9,6 +9,8 @@ import TopBanner from "./components/TopBanner";
 import Footer from "./components/Footer";
 import ContactPage from "./pages/ContactPage";
 import BookingPage from "./pages/BookingPage";
+import TourPage from "./pages/TourPage";
+import BBQPage from "./pages/BBQPage";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/booking" element={<BookingPage />} />
+          <Route path="/tour" element={<TourPage />} />
+          <Route path="/bbq" element={<BBQPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
